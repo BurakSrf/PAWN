@@ -1,6 +1,8 @@
 
 #include <Pawn.CMD>
 #include <sscanf2>
+new oisim[128];
+new aisim[128];
 
 // Aranma seviyesi ekleme //
 CMD:aekle(playerid, params[])
