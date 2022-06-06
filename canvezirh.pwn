@@ -21,3 +21,14 @@ CMD:canzirhver(playerid, params[])
     SendClientMessageToAll(COLOR_RED, czmesaj);
     return 1;
 }
+
+//GİRİŞ FONKSIYONU //
+stock GirisYapmamis(playerid)
+{
+	if (!IsPlayerConnected(playerid))
+	{
+	    return 0;
+	}
+	return 1;
+}
+// GIRIS FONKSIYONU BITIS //
