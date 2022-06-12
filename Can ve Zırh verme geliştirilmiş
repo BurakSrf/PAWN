@@ -1,0 +1,51 @@
+cmd:givearmorheal(playerid, params[])
+{
+
+    new id, type[24], string[128];
+
+    if (sscanf(params, "ds[24]S()[128]", id, type, string))
+{
+
+    KomutKullanım(playerid, "/givearmorheal [id] [parametre]");
+    ParametreKullan(playerid, "zirh,can");
+    return 1;
+
+}
+
+    if (!strcmp(type, "can", true))
+{
+
+    new Float:can;
+
+    if (sscanf(string, "f", can)) return KomutKullanım(playerid,  "/givearmorheal [id] [can] [can değer]");
+    if(can < 0 || can > 100) return HataGonder(playerid, "100'den büyük değer giremezsiniz.");
+    if(!spamProtect(playerid, "canzirh" ,0)) return HataGonder(playerid, "3 saniye geçtikten sonra tekrar deneyiniz.");
+    GivePlayerHealth(id, can);
+    
+    new canm1[128];
+    GetPlayerName(playerid, aisim, 24);
+    GetPlayerName(id, oisim, 24);
+    format(canm1, sizeof(canm1), "{f81414}%s {ffffff}adlı admin {f81414}%s {ffffff}adlı oyuncuya {f81414}%0.1f {ffffff}değerinde can verdi.", aisim, oisim, can);
+    SendClientMessage(playerid, -1,canm1);
+}
+
+    if (!strcmp(type, "zirh", true))
+{
+    new Float:zirh;
+
+    if(sscanf(string, "f", zirh)) return KomutKullanım(playerid, "/givearmorheal [id] [zirh] [zırh değer]");
+    if(zirh < 0 || zirh > 100) return HataGonder(playerid, "0-100 arası değer girmelisin.");
+    
+    if(!spamProtect(playerid, "canzirh" ,0)) return HataGonder(playerid, "3 saniye geçtikten sonra tekrar deneyiniz.");
+    GivePlayerArmour(playerid, zirh);
+
+    new zirh1[128];
+    GetPlayerName(playerid, aisim, 24);
+    GetPlayerName(id, oisim, 24);
+    format(zirh1, sizeof(zirh1), "{f81414}%s {ffffff}adlı admin {f81414}%s {ffffff}adlı oyuncuya {f81414}%0.1f {ffffff}değerinde zirh verdi.", aisim, oisim, zirh);
+    SendClientMessageToAll(playerid, zirh1);
+}
+    return 1;
+
+}
+
