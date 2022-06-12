@@ -3,6 +3,8 @@ cmd:givearmorheal(playerid, params[])
 
     new id, type[24], string[128];
 
+    if(pAdmin[playerid] < 5) return HataGonder(playerid, "Yetersiz yetki.");
+    if(IsPlayerInAnyVehicle(playerid)) return HataGonder(playerid, "Komutu kullanabilmek için araç dışında olman gerekiyor.");
     if (sscanf(params, "ds[24]S()[128]", id, type, string))
 {
 
